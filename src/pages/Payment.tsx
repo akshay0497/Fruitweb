@@ -3,7 +3,6 @@ import { TextInput } from '../components/common/TextInput';
 import { NumberInput } from '../components/common/NumberInput';
 import { Select } from '../components/common/Select';
 import { TextArea } from '../components/common/TextArea';
-import { supabase } from '../lib/supabase';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 
 interface Payment {
@@ -38,14 +37,14 @@ export const Payment: React.FC = () => {
 
   const fetchPayments = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('payments')
-      .select('*')
-      .order('created_at', { ascending: false });
+    // const { data, error } = await supabase
+    //   .from('payments')
+    //   .select('*')
+    //   .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      setPayments(data);
-    }
+    // if (!error && data) {
+    //   setPayments(data);
+    // }
     setLoading(false);
   };
 
@@ -60,22 +59,22 @@ export const Payment: React.FC = () => {
     };
 
     if (editingId) {
-      const { error } = await supabase
-        .from('payments')
-        .update(paymentData)
-        .eq('id', editingId);
+      // const { error } = await supabase
+      //   .from('payments')
+      //   .update(paymentData)
+      //   .eq('id', editingId);
 
-      if (!error) {
-        resetForm();
-        fetchPayments();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchPayments();
+      // }
     } else {
-      const { error } = await supabase.from('payments').insert([paymentData]);
+      // const { error } = await supabase.from('payments').insert([paymentData]);
 
-      if (!error) {
-        resetForm();
-        fetchPayments();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchPayments();
+      // }
     }
   };
 
@@ -91,10 +90,10 @@ export const Payment: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this payment record?')) {
-      const { error } = await supabase.from('payments').delete().eq('id', id);
-      if (!error) {
-        fetchPayments();
-      }
+      // const { error } = await supabase.from('payments').delete().eq('id', id);
+      // if (!error) {
+      //   fetchPayments();
+      // }
     }
   };
 
