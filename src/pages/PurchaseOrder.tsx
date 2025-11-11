@@ -5,7 +5,6 @@ import { DatePicker } from '../components/common/DatePicker';
 import { Select } from '../components/common/Select';
 import { Checkbox } from '../components/common/Checkbox';
 import { TextArea } from '../components/common/TextArea';
-import { supabase } from '../lib/supabase';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 
 interface PurchaseOrder {
@@ -41,26 +40,26 @@ export const PurchaseOrder: React.FC = () => {
   }, []);
 
   const fetchFruits = async () => {
-    const { data } = await supabase
-      .from('fruits')
-      .select('id, fruit_name')
-      .eq('active', true);
+    // const { data } = await supabase
+    //   .from('fruits')
+    //   .select('id, fruit_name')
+    //   .eq('active', true);
 
-    if (data) {
-      setFruits(data.map((f) => ({ value: f.id, label: f.fruit_name })));
-    }
+    // if (data) {
+    //   setFruits(data.map((f) => ({ value: f.id, label: f.fruit_name })));
+    // }
   };
 
   const fetchOrders = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('purchase_orders')
-      .select('*, fruits(fruit_name)')
-      .order('created_at', { ascending: false });
+    // const { data, error } = await supabase
+    //   .from('purchase_orders')
+    //   .select('*, fruits(fruit_name)')
+    //   .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      setOrders(data);
-    }
+    // if (!error && data) {
+    //   setOrders(data);
+    // }
     setLoading(false);
   };
 
@@ -84,22 +83,22 @@ export const PurchaseOrder: React.FC = () => {
     };
 
     if (editingId) {
-      const { error } = await supabase
-        .from('purchase_orders')
-        .update(orderData)
-        .eq('id', editingId);
+      // const { error } = await supabase
+      //   .from('purchase_orders')
+      //   .update(orderData)
+      //   .eq('id', editingId);
 
-      if (!error) {
-        resetForm();
-        fetchOrders();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchOrders();
+      // }
     } else {
-      const { error } = await supabase.from('purchase_orders').insert([orderData]);
+      // const { error } = await supabase.from('purchase_orders').insert([orderData]);
 
-      if (!error) {
-        resetForm();
-        fetchOrders();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchOrders();
+      // }
     }
   };
 
@@ -118,10 +117,10 @@ export const PurchaseOrder: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this purchase order?')) {
-      const { error } = await supabase.from('purchase_orders').delete().eq('id', id);
-      if (!error) {
-        fetchOrders();
-      }
+      // const { error } = await supabase.from('purchase_orders').delete().eq('id', id);
+      // if (!error) {
+      //   fetchOrders();
+      // }
     }
   };
 
