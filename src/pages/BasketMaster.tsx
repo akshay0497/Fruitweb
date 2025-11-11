@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { TextInput } from '../components/common/TextInput';
 import { NumberInput } from '../components/common/NumberInput';
 import { Checkbox } from '../components/common/Checkbox';
-import { supabase } from '../lib/supabase';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 
 interface Basket {
@@ -31,14 +30,14 @@ export const BasketMaster: React.FC = () => {
 
   const fetchBaskets = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('baskets')
-      .select('*')
-      .order('created_at', { ascending: false });
+    // const { data, error } = await supabase
+    //   .from('baskets')
+    //   .select('*')
+    //   .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      setBaskets(data);
-    }
+    // if (!error && data) {
+    //   setBaskets(data);
+    // }
     setLoading(false);
   };
 
@@ -53,23 +52,23 @@ export const BasketMaster: React.FC = () => {
     };
 
     if (editingId) {
-      const { error } = await supabase
-        .from('baskets')
-        .update(basketData)
-        .eq('id', editingId);
+      // const { error } = await supabase
+      //   .from('baskets')
+      //   .update(basketData)
+      //   .eq('id', editingId);
 
-      if (!error) {
-        setEditingId(null);
-        resetForm();
-        fetchBaskets();
-      }
+      // if (!error) {
+      //   setEditingId(null);
+      //   resetForm();
+      //   fetchBaskets();
+      // }
     } else {
-      const { error } = await supabase.from('baskets').insert([basketData]);
+      // const { error } = await supabase.from('baskets').insert([basketData]);
 
-      if (!error) {
-        resetForm();
-        fetchBaskets();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchBaskets();
+      // }
     }
   };
 
@@ -85,10 +84,10 @@ export const BasketMaster: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this basket?')) {
-      const { error } = await supabase.from('baskets').delete().eq('id', id);
-      if (!error) {
-        fetchBaskets();
-      }
+      // const { error } = await supabase.from('baskets').delete().eq('id', id);
+      // if (!error) {
+      //   fetchBaskets();
+      // }
     }
   };
 
