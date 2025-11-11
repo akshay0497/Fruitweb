@@ -4,7 +4,6 @@ import { NumberInput } from '../components/common/NumberInput';
 import { TextArea } from '../components/common/TextArea';
 import { Checkbox } from '../components/common/Checkbox';
 import { FileUpload } from '../components/common/FileUpload';
-import { supabase } from '../lib/supabase';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 
 interface Fruit {
@@ -36,14 +35,14 @@ export const FruitMaster: React.FC = () => {
 
   const fetchFruits = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('fruits')
-      .select('*')
-      .order('created_at', { ascending: false });
+    // const { data, error } = await supabase
+    //   .from('fruits')
+    //   .select('*')
+    //   .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      setFruits(data);
-    }
+    // if (!error && data) {
+    //   setFruits(data);
+    // }
     setLoading(false);
   };
 
@@ -59,23 +58,23 @@ export const FruitMaster: React.FC = () => {
     };
 
     if (editingId) {
-      const { error } = await supabase
-        .from('fruits')
-        .update(fruitData)
-        .eq('id', editingId);
+      // const { error } = await supabase
+      //   .from('fruits')
+      //   .update(fruitData)
+      //   .eq('id', editingId);
 
-      if (!error) {
-        setEditingId(null);
-        resetForm();
-        fetchFruits();
-      }
+      // if (!error) {
+      //   setEditingId(null);
+      //   resetForm();
+      //   fetchFruits();
+      // }
     } else {
-      const { error } = await supabase.from('fruits').insert([fruitData]);
+      // const { error } = await supabase.from('fruits').insert([fruitData]);
 
-      if (!error) {
-        resetForm();
-        fetchFruits();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchFruits();
+      // }
     }
   };
 
@@ -92,10 +91,10 @@ export const FruitMaster: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this fruit?')) {
-      const { error } = await supabase.from('fruits').delete().eq('id', id);
-      if (!error) {
-        fetchFruits();
-      }
+      // const { error } = await supabase.from('fruits').delete().eq('id', id);
+      // if (!error) {
+      //   fetchFruits();
+      // }
     }
   };
 
