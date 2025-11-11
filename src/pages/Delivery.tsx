@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { TextInput } from '../components/common/TextInput';
 import { Select } from '../components/common/Select';
 import { TextArea } from '../components/common/TextArea';
-import { supabase } from '../lib/supabase';
 import { Plus, Edit2, Trash2, Package } from 'lucide-react';
 
 interface Delivery {
@@ -38,14 +37,14 @@ export const Delivery: React.FC = () => {
 
   const fetchDeliveries = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('deliveries')
-      .select('*')
-      .order('created_at', { ascending: false });
+    // const { data, error } = await supabase
+    //   .from('deliveries')
+    //   .select('*')
+    //   .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      setDeliveries(data);
-    }
+    // if (!error && data) {
+    //   setDeliveries(data);
+    // }
     setLoading(false);
   };
 
@@ -60,22 +59,22 @@ export const Delivery: React.FC = () => {
     };
 
     if (editingId) {
-      const { error } = await supabase
-        .from('deliveries')
-        .update(deliveryData)
-        .eq('id', editingId);
+      // const { error } = await supabase
+      //   .from('deliveries')
+      //   .update(deliveryData)
+      //   .eq('id', editingId);
 
-      if (!error) {
-        resetForm();
-        fetchDeliveries();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchDeliveries();
+      // }
     } else {
-      const { error } = await supabase.from('deliveries').insert([deliveryData]);
+      // const { error } = await supabase.from('deliveries').insert([deliveryData]);
 
-      if (!error) {
-        resetForm();
-        fetchDeliveries();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchDeliveries();
+      // }
     }
   };
 
@@ -91,10 +90,10 @@ export const Delivery: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this delivery record?')) {
-      const { error } = await supabase.from('deliveries').delete().eq('id', id);
-      if (!error) {
-        fetchDeliveries();
-      }
+      // const { error } = await supabase.from('deliveries').delete().eq('id', id);
+      // if (!error) {
+      //   fetchDeliveries();
+      // }
     }
   };
 
