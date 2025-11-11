@@ -97,7 +97,7 @@ export const Reports: React.FC = () => {
     //   default:
     //     setLoading(false);
     //     return;
-    }
+    // }
 
     // if (statusFilter) {
     //   query = query.eq(
