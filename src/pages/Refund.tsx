@@ -3,7 +3,6 @@ import { TextInput } from '../components/common/TextInput';
 import { NumberInput } from '../components/common/NumberInput';
 import { Select } from '../components/common/Select';
 import { TextArea } from '../components/common/TextArea';
-import { supabase } from '../lib/supabase';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 
 interface Refund {
@@ -38,14 +37,14 @@ export const Refund: React.FC = () => {
 
   const fetchRefunds = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('refunds')
-      .select('*')
-      .order('created_at', { ascending: false });
+    // const { data, error } = await supabase
+    //   .from('refunds')
+    //   .select('*')
+    //   .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      setRefunds(data);
-    }
+    // if (!error && data) {
+    //   setRefunds(data);
+    // }
     setLoading(false);
   };
 
@@ -60,22 +59,22 @@ export const Refund: React.FC = () => {
     };
 
     if (editingId) {
-      const { error } = await supabase
-        .from('refunds')
-        .update(refundData)
-        .eq('id', editingId);
+      // const { error } = await supabase
+      //   .from('refunds')
+      //   .update(refundData)
+      //   .eq('id', editingId);
 
-      if (!error) {
-        resetForm();
-        fetchRefunds();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchRefunds();
+      // }
     } else {
-      const { error } = await supabase.from('refunds').insert([refundData]);
+      // const { error } = await supabase.from('refunds').insert([refundData]);
 
-      if (!error) {
-        resetForm();
-        fetchRefunds();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchRefunds();
+      // }
     }
   };
 
@@ -91,10 +90,10 @@ export const Refund: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this refund record?')) {
-      const { error } = await supabase.from('refunds').delete().eq('id', id);
-      if (!error) {
-        fetchRefunds();
-      }
+      // const { error } = await supabase.from('refunds').delete().eq('id', id);
+      // if (!error) {
+      //   fetchRefunds();
+      // }
     }
   };
 
