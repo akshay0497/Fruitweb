@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DatePicker } from '../components/common/DatePicker';
 import { Select } from '../components/common/Select';
-import { supabase } from '../lib/supabase';
 import { FileDown, Search, BarChart3 } from 'lucide-react';
 
 export const Reports: React.FC = () => {
@@ -64,40 +63,40 @@ export const Reports: React.FC = () => {
     setLoading(true);
     let query;
 
-    switch (reportType) {
-      case 'sales':
-        query = supabase
-          .from('sales_invoices')
-          .select('*, fruits(fruit_name)')
-          .order('si_date', { ascending: false });
-        break;
-      case 'purchases':
-        query = supabase
-          .from('purchase_orders')
-          .select('*, fruits(fruit_name)')
-          .order('po_date', { ascending: false });
-        break;
-      case 'payments':
-        query = supabase
-          .from('payments')
-          .select('*')
-          .order('created_at', { ascending: false });
-        break;
-      case 'deliveries':
-        query = supabase
-          .from('deliveries')
-          .select('*')
-          .order('created_at', { ascending: false });
-        break;
-      case 'inventory':
-        query = supabase
-          .from('fruits')
-          .select('*')
-          .order('created_at', { ascending: false });
-        break;
-      default:
-        setLoading(false);
-        return;
+    // switch (reportType) {
+    //   case 'sales':
+    //     query = supabase
+    //       .from('sales_invoices')
+    //       .select('*, fruits(fruit_name)')
+    //       .order('si_date', { ascending: false });
+    //     break;
+    //   case 'purchases':
+    //     query = supabase
+    //       .from('purchase_orders')
+    //       .select('*, fruits(fruit_name)')
+    //       .order('po_date', { ascending: false });
+    //     break;
+    //   case 'payments':
+    //     query = supabase
+    //       .from('payments')
+    //       .select('*')
+    //       .order('created_at', { ascending: false });
+    //     break;
+    //   case 'deliveries':
+    //     query = supabase
+    //       .from('deliveries')
+    //       .select('*')
+    //       .order('created_at', { ascending: false });
+    //     break;
+    //   case 'inventory':
+    //     query = supabase
+    //       .from('fruits')
+    //       .select('*')
+    //       .order('created_at', { ascending: false });
+    //     break;
+    //   default:
+    //     setLoading(false);
+    //     return;
     }
 
     if (statusFilter) {
