@@ -3,7 +3,6 @@ import { TextInput } from '../components/common/TextInput';
 import { NumberInput } from '../components/common/NumberInput';
 import { Select } from '../components/common/Select';
 import { Checkbox } from '../components/common/Checkbox';
-import { supabase } from '../lib/supabase';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 
 interface Decoration {
@@ -38,14 +37,14 @@ export const DecorationMaster: React.FC = () => {
 
   const fetchDecorations = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('decorations')
-      .select('*')
-      .order('created_at', { ascending: false });
+    // const { data, error } = await supabase
+    //   .from('decorations')
+    //   .select('*')
+    //   .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      setDecorations(data);
-    }
+    // if (!error && data) {
+    //   setDecorations(data);
+    // }
     setLoading(false);
   };
 
@@ -60,22 +59,22 @@ export const DecorationMaster: React.FC = () => {
     };
 
     if (editingId) {
-      const { error } = await supabase
-        .from('decorations')
-        .update(decorationData)
-        .eq('id', editingId);
+      // const { error } = await supabase
+      //   .from('decorations')
+      //   .update(decorationData)
+      //   .eq('id', editingId);
 
-      if (!error) {
-        resetForm();
-        fetchDecorations();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchDecorations();
+      // }
     } else {
-      const { error } = await supabase.from('decorations').insert([decorationData]);
+      // const { error } = await supabase.from('decorations').insert([decorationData]);
 
-      if (!error) {
-        resetForm();
-        fetchDecorations();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchDecorations();
+      // }
     }
   };
 
@@ -91,10 +90,10 @@ export const DecorationMaster: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this decoration?')) {
-      const { error } = await supabase.from('decorations').delete().eq('id', id);
-      if (!error) {
-        fetchDecorations();
-      }
+      // const { error } = await supabase.from('decorations').delete().eq('id', id);
+      // if (!error) {
+      //   fetchDecorations();
+      // }
     }
   };
 
