@@ -4,7 +4,6 @@ import { NumberInput } from '../components/common/NumberInput';
 import { DatePicker } from '../components/common/DatePicker';
 import { Select } from '../components/common/Select';
 import { Checkbox } from '../components/common/Checkbox';
-import { supabase } from '../lib/supabase';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 
 interface SalesInvoice {
@@ -38,26 +37,26 @@ export const SalesInvoice: React.FC = () => {
   }, []);
 
   const fetchFruits = async () => {
-    const { data } = await supabase
-      .from('fruits')
-      .select('id, fruit_name')
-      .eq('active', true);
+    // const { data } = await supabase
+    //   .from('fruits')
+    //   .select('id, fruit_name')
+    //   .eq('active', true);
 
-    if (data) {
-      setFruits(data.map((f) => ({ value: f.id, label: f.fruit_name })));
-    }
+    // if (data) {
+    //   setFruits(data.map((f) => ({ value: f.id, label: f.fruit_name })));
+    // }
   };
 
   const fetchInvoices = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('sales_invoices')
-      .select('*, fruits(fruit_name)')
-      .order('created_at', { ascending: false });
+    // const { data, error } = await supabase
+    //   .from('sales_invoices')
+    //   .select('*, fruits(fruit_name)')
+    //   .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      setInvoices(data);
-    }
+    // if (!error && data) {
+    //   setInvoices(data);
+    // }
     setLoading(false);
   };
 
@@ -80,22 +79,22 @@ export const SalesInvoice: React.FC = () => {
     };
 
     if (editingId) {
-      const { error } = await supabase
-        .from('sales_invoices')
-        .update(invoiceData)
-        .eq('id', editingId);
+      // const { error } = await supabase
+      //   .from('sales_invoices')
+      //   .update(invoiceData)
+      //   .eq('id', editingId);
 
-      if (!error) {
-        resetForm();
-        fetchInvoices();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchInvoices();
+      // }
     } else {
-      const { error } = await supabase.from('sales_invoices').insert([invoiceData]);
+      // const { error } = await supabase.from('sales_invoices').insert([invoiceData]);
 
-      if (!error) {
-        resetForm();
-        fetchInvoices();
-      }
+      // if (!error) {
+      //   resetForm();
+      //   fetchInvoices();
+      // }
     }
   };
 
@@ -113,10 +112,10 @@ export const SalesInvoice: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this invoice?')) {
-      const { error } = await supabase.from('sales_invoices').delete().eq('id', id);
-      if (!error) {
-        fetchInvoices();
-      }
+      // const { error } = await supabase.from('sales_invoices').delete().eq('id', id);
+      // if (!error) {
+      //   fetchInvoices();
+      // }
     }
   };
 
