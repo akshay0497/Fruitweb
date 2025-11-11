@@ -99,18 +99,18 @@ export const Reports: React.FC = () => {
     //     return;
     }
 
-    if (statusFilter) {
-      query = query.eq(
-        reportType === 'deliveries' ? 'status' : 'active',
-        statusFilter === 'active' ? true : statusFilter
-      );
-    }
+    // if (statusFilter) {
+    //   query = query.eq(
+    //     reportType === 'deliveries' ? 'status' : 'active',
+    //     statusFilter === 'active' ? true : statusFilter
+    //   );
+    // }
 
-    const { data, error } = await query;
+    // const { data, error } = await query;
 
-    if (!error && data) {
-      setReportData(data);
-    }
+    // if (!error && data) {
+    //   setReportData(data);
+    // }
     setLoading(false);
   };
 
